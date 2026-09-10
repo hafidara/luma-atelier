@@ -1,0 +1,26 @@
+{
+  "name": "@luma/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run build && concurrently --kill-others \"tsc --watch\" \"node --env-file-if-exists=.env --watch dist/main.js\"",
+    "build": "tsc -p tsconfig.json",
+    "start": "node --env-file-if-exists=.env dist/main.js",
+    "test": "npm run build && node --test test/*.test.cjs"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.0",
+    "@nestjs/core": "^11.1.0",
+    "@nestjs/platform-express": "^11.1.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0",
+    "concurrently": "^9.2.0"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "luma-atelier",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22.9"
+  },
+  "overrides": {
+    "@nestjs/platform-express": {
+      "multer": "2.3.0"
+    }
+  },
+  "scripts": {
+    "dev": "concurrently --kill-others --names api,web \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:web": "npm run dev --workspace @luma/web",
+    "start": "concurrently --kill-others --names api,web \"npm run start --workspace @luma/api\" \"npm run start --workspace @luma/web\"",
+    "test:e2e": "npm run build && playwright test",
+    "dev:api": "npm run dev --workspace @luma/api",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0",
+    "concurrently": "^9.2.0"
+  }
+}
